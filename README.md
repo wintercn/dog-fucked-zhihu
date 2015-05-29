@@ -1,8 +1,1 @@
-# lib-component
-
-A non-fullfeatured :
-
-*  pollyfill of creating custom elements
-*  shim of using custom elements
-
-# dog-fucked-zhihu
+退出知乎好帮手——狗日的知乎，备份自己的答案，取消所有点赞，批量替换所有答案
