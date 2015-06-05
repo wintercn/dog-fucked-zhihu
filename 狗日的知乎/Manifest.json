@@ -1,0 +1,40 @@
+﻿{
+	"name":"狗日的知乎",
+	"version":"1.0",
+	"manifest_version":2,
+	"description":"为了更好的知乎",
+	"icons":{
+			"16":"img/icon/16.png",
+			"48":"img/icon/48.png",
+			"128":"img/icon/128.png"
+
+		},
+	"browser_action":
+			{
+			"default_icon":"img/icon/48.png",
+			"default_title":"狗日的知乎",
+			"default_popup":"popup.html"
+			
+			
+			},
+	"background":{
+			"scripts":["background.js"]
+			
+			},
+
+	"content_scripts":
+		[
+		{
+		"matches":["<all_urls>"],
+		"js":["content.js"]
+		}
+		],
+	"permissions":[
+			"tabs",
+			"http://*/*",
+			"background"
+			]
+	
+
+
+}
