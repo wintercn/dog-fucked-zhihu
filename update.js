@@ -7,7 +7,7 @@ window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileS
 function getAnswerIds(){
     return new Promise(function(resolve,reject){
         var h = setInterval(function(){
-            if(document.querySelectorAll('.zu-button-more').length) {
+            if( document.querySelectorAll('.zu-button-more').length) {
                 document.querySelectorAll('.zu-button-more')[0].click();
             } else {
                 clearInterval(h);
@@ -47,12 +47,27 @@ function wait(duration) {
     })
 }
 
+function random(str) {
+    var chars = str.split('');
+    
+    for(var i = 0; i < chars.length; i++) {
+        chars[i] += ['\uFEFF','\u200C','\u200D'][Math.random()*3 | 0] 
+    }
+    return chars.join('');
+}
+
 
 getAnswerIds().then(function(ids){
     var i = 0;
     void function(){ // this is a promise loop
         if(i<ids.length) {
-            wait(5000).then(function(){ return updateAnswer(ids[i++],'因为知乎哔~的友善度策略，本人已经决定离开知乎，所有答案由 <a data-hash="ec03b8e839a6fb763e1b8113455362db" href="/people/winter-25" class="member_mention" data-editable="true" data-title="@winter">@winter</a>  开发的插件"更好的知乎"（<a href="https://github.com/wintercn/dog-fucked-zhihu" data-editable="true" data-title="wintercn/dog-fucked-zhihu · GitHub" class="">wintercn/dog-fucked-zhihu · GitHub</a>）删除。');}).then(arguments.callee);
+            wait(10000).then(function(){ return updateAnswer(ids[i++],
+                random('因为知乎哔~的友善度策略，本人已经决定离开知乎，所有答案由') 
+                + '<a data-hash="ec03b8e839a6fb763e1b8113455362db" href="/people/winter-25" class="member_mention" data-editable="true" data-title="@winter">@winter</a>  ' 
+                + random('开发的插件"更好的知乎"') 
+                + '（<a href="https://github.com/wintercn/dog-fucked-zhihu" data-editable="true" data-title="wintercn/dog-fucked-zhihu · GitHub" class="">wintercn/dog-fucked-zhihu · GitHub</a>）删除。'
+                + random('winter全部的答案的备份可以在')
+                + '<a href="https://gist.github.com/wintercn/f3d349fd3daadc9e1bb1" data-editable="true" data-title="github.com 的页面">https://gist.github.com/wintercn/f3d349fd3daadc9e1bb1</a>&nbsp;找到<br><div><img class="" data-original="http://pic4.zhimg.com/748d340e7796ec8d92ad423f68f43a40_b.jpg" title="点击查看原图" src="http://pic4.zhimg.com/748d340e7796ec8d92ad423f68f43a40_b.jpg" data-rawwidth="50" data-rawheight="50"><br><br></div></div>');}).then(arguments.callee);
         }
     }();
 })
